@@ -5,6 +5,10 @@ import random
 # range(10)は0~9の配列
 answer_num_list = random.sample(range(10), 3)
 
+def is_unique(seq):
+    return len(seq) == len(set(seq))
+
+
 print('数字あてゲームへようこそ')
 
 attack_count = 0
@@ -22,7 +26,13 @@ while(True):
             
     except:
         print('予期せぬ入力が行われました')
-        
+
+    # double num check
+    if not is_unique(input_num_list):
+        attack_count -= 1
+        print('重複した数字を入力してはいけません')
+        continue
+
     # check eat
     for i in range(3):
         if(answer_num_list[i]==input_num_list[i]):
